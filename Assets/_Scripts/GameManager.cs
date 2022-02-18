@@ -8,7 +8,9 @@ public class GameManager
     public GameState gameState { get; private set; }
     public int vidas;
     public int pontos;
+
     
+
     private static GameManager _instance;
     public static GameManager GetInstance()
     {
@@ -21,6 +23,17 @@ public class GameManager
     }
     private GameManager()
     {
+        vidas = 3;
+        pontos = 0;
+        gameState = GameState.GAME;
+    }
 
+    public delegate void ChangeStateDelegate();
+    public static ChangeStateDelegate changeStateDelegate;
+
+    public void ChangeState(GameState nextState)
+    {
+    gameState = nextState;
+    changeStateDelegate();
     }
 }

@@ -6,16 +6,18 @@ public class MovimentoRaquete : MonoBehaviour
 {   
     [Range(1, 15)]
     public float velocidade=5.0f;
-
+    GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gm = GameManager.GetInstance();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // primeira execução nas rotinas de Update() da Bola e Raquete.
+        if (gm.gameState != GameManager.GameState.GAME) return;
         float inputX = Input.GetAxis("Horizontal");
         transform.position += new Vector3(inputX, 0, 0) * Time.deltaTime * velocidade;
     }
