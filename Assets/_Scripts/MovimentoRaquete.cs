@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovimentoRaquete : MonoBehaviour
 {   
     [Range(1, 15)]
-    public float velocidade=5.0f;
+    public float velocidade=7.5f;
     GameManager gm;
     // Start is called before the first frame update
     void Start()

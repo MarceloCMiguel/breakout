@@ -5,16 +5,17 @@ using UnityEngine;
 public class MovimentoBola : MonoBehaviour
 {
     [Range(1, 15)]
-    public float velocidade = 5.0f;
+    public float velocidade = 7.5f;
     private Vector3 direcao;
 
     GameManager gm;
     public GameObject raquete;
-
+    private Vector3 raquete_scale;
     // Start is called before the first frame update
     void Start()
     {
         raquete = GameObject.FindGameObjectWithTag("Player");
+
         float dirX = Random.Range(-5.0f, 5.0f);
         float dirY = Random.Range(1.0f, 5.0f);
         direcao = new Vector3(dirX, dirY).normalized;
@@ -75,7 +76,25 @@ public class MovimentoBola : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
-            float dirX = Random.Range(-5.0f, 5.0f);
+            Vector3 ball_position = transform.position;
+            raquete_scale = raquete.transform.localScale;
+            Vector3 raquete_position = raquete.transform.position;
+            Debug.Log($"Raquete scale: {raquete_scale.x}");
+
+            Debug.Log($"Raquete position: {raquete.transform.position}");
+            Debug.Log($"Ball position: {ball_position}");
+            float dirX = 0.0f;
+
+            if(ball_position.x < raquete_position.x){
+                dirX = Random.Range(-5.0f, 0.0f);
+            }
+            else if (ball_position.x > raquete_position.x){
+                dirX = Random.Range(0.0f, 5.0f);
+            }
+            else{
+                dirX = 0.0f;
+            }
+            // float dirX = Random.Range(-5.0f, 5.0f);
             float dirY = Random.Range(1.0f, 5.0f);
 
             direcao = new Vector3(dirX, dirY).normalized;
