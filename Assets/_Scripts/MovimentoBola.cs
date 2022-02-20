@@ -26,7 +26,7 @@ public class MovimentoBola : MonoBehaviour
     {
         // primeira execução nas rotinas de Update() da Bola e Raquete.
         if (gm.gameState != GameManager.GameState.GAME) return;
-        Debug.Log($"Vidas: {gm.vidas} \t | \t Pontos: {gm.pontos}");
+        // Debug.Log($"Vidas: {gm.vidas} \t | \t Pontos: {gm.pontos}");
         transform.position += direcao * Time.deltaTime * velocidade;
         Vector2 posicaoViewport = Camera.main.WorldToViewportPoint(transform.position);
         if( posicaoViewport.x < 0 || posicaoViewport.x > 1 )
@@ -40,21 +40,26 @@ public class MovimentoBola : MonoBehaviour
 
         if(posicaoViewport.y < 0)
         {
+            gm.vidas--;
             Reset();
         }
 
     }
 
-    private void Reset()
-   {
-       Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+    public void Go_To_Platform(){
+        Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
        transform.position = playerPosition + new Vector3(0, 0.5f, 0);
-
        float dirX = Random.Range(-5.0f, 5.0f);
        float dirY = Random.Range(2.0f, 5.0f);
-
        direcao = new Vector3(dirX, dirY).normalized;
-       gm.vidas--;
+    }
+
+
+
+    private void Reset()
+   {
+       Go_To_Platform();
+       
        if(gm.vidas <= 0 && gm.gameState == GameManager.GameState.GAME)
        {
            gm.ChangeState(GameManager.GameState.ENDGAME);

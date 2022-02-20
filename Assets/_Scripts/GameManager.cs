@@ -25,7 +25,7 @@ public class GameManager
     {
         vidas = 3;
         pontos = 0;
-        gameState = GameState.GAME;
+        gameState = GameState.MENU;
     }
 
     public delegate void ChangeStateDelegate();
@@ -33,7 +33,14 @@ public class GameManager
 
     public void ChangeState(GameState nextState)
     {
-    gameState = nextState;
-    changeStateDelegate();
+        if (gameState == GameState.ENDGAME || gameState == GameState.MENU) Reset();
+        gameState = nextState;
+        changeStateDelegate();
+    }
+
+    private void Reset()
+    {
+        vidas = 3;
+        pontos = 0;
     }
 }

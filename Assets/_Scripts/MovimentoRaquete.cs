@@ -20,5 +20,9 @@ public class MovimentoRaquete : MonoBehaviour
         if (gm.gameState != GameManager.GameState.GAME) return;
         float inputX = Input.GetAxis("Horizontal");
         transform.position += new Vector3(inputX, 0, 0) * Time.deltaTime * velocidade;
+
+        if(Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME) {
+            gm.ChangeState(GameManager.GameState.PAUSE);
+        }
     }
 }
