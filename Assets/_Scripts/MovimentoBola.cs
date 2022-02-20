@@ -9,10 +9,12 @@ public class MovimentoBola : MonoBehaviour
     private Vector3 direcao;
 
     GameManager gm;
+    public GameObject raquete;
 
     // Start is called before the first frame update
     void Start()
     {
+        raquete = GameObject.FindGameObjectWithTag("Player");
         float dirX = Random.Range(-5.0f, 5.0f);
         float dirY = Random.Range(1.0f, 5.0f);
         direcao = new Vector3(dirX, dirY).normalized;
@@ -41,6 +43,9 @@ public class MovimentoBola : MonoBehaviour
         if(posicaoViewport.y < 0)
         {
             gm.vidas--;
+            raquete.transform.position = new Vector3(0,-4,0);
+            // raquete.transform.position = savedPosition;
+
             Reset();
         }
 

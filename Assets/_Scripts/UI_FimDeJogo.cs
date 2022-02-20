@@ -9,7 +9,7 @@ public class UI_FimDeJogo : MonoBehaviour
 
     private void OnEnable(){
         gm = GameManager.GetInstance();
-
+        
         if (gm.vidas > 0){
             message.text = "Você Ganhou!";
         }

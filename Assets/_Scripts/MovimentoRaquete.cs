@@ -24,5 +24,13 @@ public class MovimentoRaquete : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME) {
             gm.ChangeState(GameManager.GameState.PAUSE);
         }
+        Vector3 ballPosition = GameObject.FindGameObjectWithTag("Bola").transform.position;
+        // if (ballPosition.y < transform.position.y){
+        //     Reset();
+        // }
+    }
+
+    public void Reset(){
+        transform.position = new Vector3(0, -4,0);
     }
 }
