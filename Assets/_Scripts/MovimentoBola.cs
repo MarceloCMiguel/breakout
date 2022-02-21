@@ -11,10 +11,15 @@ public class MovimentoBola : MonoBehaviour
     GameManager gm;
     public GameObject raquete;
     private Vector3 raquete_scale;
+    private AudioSource source;
+
     // SoundEffect sound_effect;
     // Start is called before the first frame update
     void Start()
     {
+        source = GetComponent<AudioSource>();
+
+
         // sound_effect = GameObject.Find("SoundEffect");
         raquete = GameObject.FindGameObjectWithTag("Player");
 
@@ -105,7 +110,7 @@ public class MovimentoBola : MonoBehaviour
         }
         else if(col.gameObject.CompareTag("Bloco"))
         {
-            // sound_effect.PlaySound("colisao");
+            source.Play();
             direcao = new Vector3(direcao.x, -direcao.y);
             gm.pontos++;
         }
