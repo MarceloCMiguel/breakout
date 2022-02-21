@@ -8,6 +8,7 @@ public class UI_Pontos : MonoBehaviour
     Text textComp;
     GameManager gm;
     // Start is called before the first frame update
+
     void Start()
     {
         textComp = GetComponent<Text>();

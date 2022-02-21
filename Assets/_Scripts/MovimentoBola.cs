@@ -11,9 +11,11 @@ public class MovimentoBola : MonoBehaviour
     GameManager gm;
     public GameObject raquete;
     private Vector3 raquete_scale;
+    // SoundEffect sound_effect;
     // Start is called before the first frame update
     void Start()
     {
+        // sound_effect = GameObject.Find("SoundEffect");
         raquete = GameObject.FindGameObjectWithTag("Player");
 
         float dirX = Random.Range(-5.0f, 5.0f);
@@ -32,11 +34,11 @@ public class MovimentoBola : MonoBehaviour
         // Debug.Log($"Vidas: {gm.vidas} \t | \t Pontos: {gm.pontos}");
         transform.position += direcao * Time.deltaTime * velocidade;
         Vector2 posicaoViewport = Camera.main.WorldToViewportPoint(transform.position);
-        if( posicaoViewport.x < 0 || posicaoViewport.x > 1 )
+        if( posicaoViewport.x < 0.01 || posicaoViewport.x > 0.995 )
         {
                 direcao = new Vector3(-direcao.x, direcao.y);
         }
-        if (posicaoViewport.y > 1 )
+        if (posicaoViewport.y > 0.99 )
         {
                 direcao = new Vector3(direcao.x, -direcao.y);
         }
@@ -76,6 +78,8 @@ public class MovimentoBola : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Player"))
         {
+            
+
             Vector3 ball_position = transform.position;
             raquete_scale = raquete.transform.localScale;
             Vector3 raquete_position = raquete.transform.position;
@@ -101,6 +105,7 @@ public class MovimentoBola : MonoBehaviour
         }
         else if(col.gameObject.CompareTag("Bloco"))
         {
+            // sound_effect.PlaySound("colisao");
             direcao = new Vector3(direcao.x, -direcao.y);
             gm.pontos++;
         }
