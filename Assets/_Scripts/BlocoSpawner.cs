@@ -22,10 +22,10 @@ public class BlocoSpawner : MonoBehaviour
           foreach (Transform child in transform) {
               GameObject.Destroy(child.gameObject);
           }
-          for(int i = 0; i < 8; i++)
+          for(int i = 0; i < 5; i++)
           {
-              for(int j = 0; j < 4; j++){
-                  Vector3 posicao = new Vector3(-6+ 1.55f * i, 4 - 0.55f * j);
+              for(int j = 0; j < 3; j++){
+                  Vector3 posicao = new Vector3(-5.5f+ 2.65f * i, 4 - 0.85f * j);
 
                   Instantiate(Bloco, posicao, Quaternion.identity, transform);
               }

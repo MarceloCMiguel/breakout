@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MovimentoBola : MonoBehaviour
 {
-    [Range(1, 15)]
-    public float velocidade = 7.5f;
+
+    private float velocidade = 9.0f;
     private Vector3 direcao;
 
     GameManager gm;
